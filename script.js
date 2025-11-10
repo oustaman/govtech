@@ -533,48 +533,60 @@ function showSlide(sectionIndex, slideIndex) {
 
 // Update display elements
 function updateDisplay() {
-    if (!slideCounter || !miniProgress || !sectionProgress) return;
-    
-    const totalSlides = sections[currentSection].length;
-    
-    // Update counter
-    slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
-    
-    // Update mini progress dots
-    miniProgress.innerHTML = '';
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'mini-progress-dot' + (i === currentSlide ? ' active' : '');
-        miniProgress.appendChild(dot);
-    }
-    
-    // Update section progress bar
-    const totalSectionsSlides = sections.reduce((acc, sec) => acc + sec.length, 0);
-    let slidesSoFar = 0;
-    for (let i = 0; i < currentSection; i++) {
-        slidesSoFar += sections[i].length;
-    }
-    slidesSoFar += currentSlide + 1;
-    const progressPercent = (slidesSoFar / totalSectionsSlides) * 100;
-    sectionProgress.style.width = progressPercent + '%';
-    
-    // Update buttons
-    const isFirstSlide = currentSection === 0 && currentSlide === 0;
-    const isLastSlide = currentSection === sections.length - 1 && 
-                        currentSlide === sections[currentSection].length - 1;
-    if (prevBtn) prevBtn.disabled = isFirstSlide;
-    if (nextBtn) nextBtn.disabled = isLastSlide;
-}
+  if (!slideCounter || !miniProgress || !sectionProgress) return;
 
-// Update navigation
-function updateNav() {
-    navLinks.forEach((link, index) => {
-        if (index === currentSection) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
+  // Total deck slides (global)
+  const totalSlidesAll = sections.reduce((acc, sec) => acc + sec.length, 0);
+
+  // How many slides up to (and including) the current one
+  let slidesSoFar = 0;
+  for (let i = 0; i < currentSection; i++) slidesSoFar += sections[i].length;
+  slidesSoFar += currentSlide + 1; // 1-based position in deck
+
+  const globalIndex = slidesSoFar - 1; // 0-based index in deck
+
+  // ---- Counter: show global position ----
+  slideCounter.textContent = `${slidesSoFar} / ${totalSlidesAll}`;
+
+  // ---- Mini progress dots: build for full deck ----
+  miniProgress.innerHTML = '';
+  for (let i = 0; i < totalSlidesAll; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'mini-progress-dot' + (i === globalIndex ? ' active' : '');
+    dot.setAttribute('aria-label', `Go to slide ${i + 1} of ${totalSlidesAll}`);
+    dot.setAttribute('role', 'button');
+    dot.tabIndex = 0;
+
+    // Optional: make dots clickable to jump anywhere in deck
+    dot.addEventListener('click', () => {
+      const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(i);
+      showSlide(sectionIndex, slideIndex);
     });
+
+    // Optional: keyboard access on dots
+    dot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(i);
+        showSlide(sectionIndex, slideIndex);
+      }
+    });
+
+    miniProgress.appendChild(dot);
+  }
+
+  // ---- Global progress bar width (unchanged logic, now global) ----
+  const progressPercent = (slidesSoFar / totalSlidesAll) * 100;
+  sectionProgress.style.width = progressPercent + '%';
+
+  // ---- Prev/Next disable logic (unchanged) ----
+  const isFirstSlide = currentSection === 0 && currentSlide === 0;
+  const isLastSlide =
+    currentSection === sections.length - 1 &&
+    currentSlide === sections[currentSection].length - 1;
+
+  if (prevBtn) prevBtn.disabled = isFirstSlide;
+  if (nextBtn) nextBtn.disabled = isLastSlide;
 }
 
 // Navigation functions
@@ -744,6 +756,20 @@ function toggleVisaDropdown() {
 // ============================================
 // INITIALIZATION
 // ============================================
+
+function getSectionSlideFromGlobalIndex(globalIndex) {
+  let acc = 0;
+  for (let s = 0; s < sections.length; s++) {
+    const len = sections[s].length;
+    if (globalIndex < acc + len) {
+      return { sectionIndex: s, slideIndex: globalIndex - acc };
+    }
+    acc += len;
+  }
+  // Fallback to last slide if out of range
+  return { sectionIndex: sections.length - 1, slideIndex: sections[sections.length - 1].length - 1 };
+}
+
 function initPortfolio() {
     // Only initialize if we're on portfolio page
     if (!document.querySelector('.slide')) return;

@@ -22,77 +22,24 @@
         <div class="progress-bar">
             <div class="progress-fill" id="sectionProgress"></div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 md:px-8 py-3">
+        <div class="max-w-6xl mx-auto px-4 md:px-8 py-3">
             <div class="flex items-center justify-between gap-3">
-                <!-- Section Navigation -->
-                <div class="flex items-center gap-3 md:gap-6 flex-wrap">
-                    <a href="#" class="nav-link active" data-section="0">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Intro</span>
-                        </span>
-                    </a>
-                    
-                    <div class="nav-section-divider hidden md:block"></div>
-                    
-                    <a href="#" class="nav-link" data-section="1">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Architecture</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="2">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Delivery</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="3">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Knowledge</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="4">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Style</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="5">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">GovTech</span>
-                        </span>
-                    </a>
-                    
-                    <div class="nav-section-divider hidden md:block"></div>
-                    
-                    <a href="#" class="nav-link" data-section="6">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Contact</span>
-                        </span>
-                    </a>
+                <button id="prevBtn" class="nav-button text-sm">
+                    <span class="hidden md:inline">Previous</span>
+                    <span class="md:hidden">Prev</span>
+                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(← Left Key)</span>
+                </button>
+                
+                <div class="flex items-center gap-3 md:gap-6">
+                    <div class="mini-progress hidden md:flex" id="miniProgress"></div>
+                    <span id="slideCounter" class="text-xs md:text-sm" style="color: var(--text-secondary);"></span>
                 </div>
                 
-                <!-- Controls - Same Row -->
-                <div class="flex items-center gap-1.5 md:gap-2">
-                    <button class="control-pill text-xs" id="tocBtn" title="Table of Contents">
-                        <span class="hidden md:inline">📑 ToC</span>
-                        <span class="md:hidden">📑</span>
-                    </button>
-                    <button class="control-pill text-xs" id="searchBtn" title="Search">
-                        <span class="hidden md:inline">🔍</span>
-                        <span class="md:hidden">🔍</span>
-                    </button>
-                    <button class="control-pill text-xs" id="kbdInfo" title="Keyboard shortcuts">
-                        <span class="hidden md:inline">⌨</span>
-                        <span class="md:hidden">⌨</span>
-                    </button>
-                    <button class="control-pill text-xs hidden md:inline-flex" id="decreaseFont">A-</button>
-                    <button class="control-pill text-xs hidden md:inline-flex" id="increaseFont">A+</button>
-                </div>
+                <button id="nextBtn" class="nav-button text-sm">
+                    <span class="hidden md:inline">Next</span>
+                    <span class="md:hidden">Next</span>
+                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(→ Right Key)</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -106,21 +53,34 @@
         ============================================ -->
         
         <!-- Intro Slide 1: Name + Role -->
-        <div class="slide active" data-section="0" data-slide="0">
-            <div class="slide-content py-16">
-                <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
-                    1.1
-                </div>
-                <h1 class="text-7xl font-extralight mb-12 tracking-tight">Mike Oustamanolakis, PhD</h1>
-                                
-                <p class="text-3xl font-light mb-8" style="color: var(--text-secondary); line-height: 1.4;">
-                    Decision UX Architect
-                </p>
-                <p class="text-2xl font-light" style="color: var(--text-secondary); line-height: 1.6;">
-                    I bring clarity to complex systems.
-                </p>
-            </div>
-        </div>
+<div class="slide active" data-section="0" data-slide="0">
+  <div class="slide-content py-16">
+
+    <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
+      1.1 — How to view this deck
+    </div>
+
+    <h1 class="text-6xl font-extralight mb-12 tracking-tight">
+      Mike Oustamanolakis, PhD
+    </h1>
+
+    <p class="text-3xl font-light mb-8" style="color: var(--text-secondary); line-height: 1.5;">
+      Decision UX Architect
+    </p>
+
+    <p class="text-2xl font-light mb-12" style="color: var(--text-secondary); line-height: 1.6;">
+      I bring clarity to complex systems.
+    </p>
+
+    <div class="text-xl font-light" style="color: var(--text-secondary); line-height: 1.7;">
+      <strong style="color: var(--text-primary);">How to view this deck</strong><br><br>
+      • Use <strong>← →</strong> arrow keys or the top navigation buttons to move between slides.<br>
+      • Scroll down inside slides — many include <strong>full static prototypes</strong> (not abridged).<br>
+      • Use the bottom bar to <strong>view sections, open the Table of Contents, search,</strong> or <strong>adjust text size.</strong>
+    </div>
+
+  </div>
+</div>
 
         <!-- Intro Slide 2: Professional Journey -->
         <div class="slide" data-section="0" data-slide="1">
@@ -3587,24 +3547,77 @@ One shared language for product, policy, and delivery.
 
     <!-- Button Bar -->
     <footer class="button-bar fixed bottom-0 w-full z-40">
-        <div class="max-w-6xl mx-auto px-4 md:px-8 py-3">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-3">
             <div class="flex items-center justify-between gap-3">
-                <button id="prevBtn" class="nav-button text-sm">
-                    <span class="hidden md:inline">Previous</span>
-                    <span class="md:hidden">Prev</span>
-                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(← Left Key)</span>
-                </button>
-                
-                <div class="flex items-center gap-3 md:gap-6">
-                    <div class="mini-progress hidden md:flex" id="miniProgress"></div>
-                    <span id="slideCounter" class="text-xs md:text-sm" style="color: var(--text-secondary);"></span>
+                <!-- Section Navigation -->
+                <div class="flex items-center gap-3 md:gap-6 flex-wrap">
+                    <a href="#" class="nav-link active" data-section="0">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Intro</span>
+                        </span>
+                    </a>
+                    
+                    <div class="nav-section-divider hidden md:block"></div>
+                    
+                    <a href="#" class="nav-link" data-section="1">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Architecture</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="2">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Delivery</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="3">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Knowledge</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="4">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Style</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="5">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Impact</span>
+                        </span>
+                    </a>
+                    
+                    <div class="nav-section-divider hidden md:block"></div>
+                    
+                    <a href="#" class="nav-link" data-section="6">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Contact</span>
+                        </span>
+                    </a>
                 </div>
                 
-                <button id="nextBtn" class="nav-button text-sm">
-                    <span class="hidden md:inline">Next</span>
-                    <span class="md:hidden">Next</span>
-                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(→ Right Key)</span>
-                </button>
+                <!-- Controls - Same Row -->
+                <div class="flex items-center gap-1.5 md:gap-2">
+                    <button class="control-pill text-xs" id="tocBtn" title="Table of Contents">
+                        <span class="hidden md:inline">📑 ToC</span>
+                        <span class="md:hidden">📑</span>
+                    </button>
+                    <button class="control-pill text-xs" id="searchBtn" title="Search">
+                        <span class="hidden md:inline">🔍</span>
+                        <span class="md:hidden">🔍</span>
+                    </button>
+                    <button class="control-pill text-xs" id="kbdInfo" title="Keyboard shortcuts">
+                        <span class="hidden md:inline">⌨</span>
+                        <span class="md:hidden">⌨</span>
+                    </button>
+                    <button class="control-pill text-xs hidden md:inline-flex" id="decreaseFont">A-</button>
+                    <button class="control-pill text-xs hidden md:inline-flex" id="increaseFont">A+</button>
+                </div>
             </div>
         </div>
     </footer>

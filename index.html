@@ -22,24 +22,77 @@
         <div class="progress-bar">
             <div class="progress-fill" id="sectionProgress"></div>
         </div>
-        <div class="max-w-6xl mx-auto px-4 md:px-8 py-3">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-3">
             <div class="flex items-center justify-between gap-3">
-                <button id="prevBtn" class="nav-button text-sm">
-                    <span class="hidden md:inline">Previous</span>
-                    <span class="md:hidden">Prev</span>
-                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(← Left Key)</span>
-                </button>
-                
-                <div class="flex items-center gap-3 md:gap-6">
-                    <div class="mini-progress hidden md:flex" id="miniProgress"></div>
-                    <span id="slideCounter" class="text-xs md:text-sm" style="color: var(--text-secondary);"></span>
+                <!-- Section Navigation -->
+                <div class="flex items-center gap-3 md:gap-6 flex-wrap">
+                    <a href="#" class="nav-link active" data-section="0">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Intro</span>
+                        </span>
+                    </a>
+                    
+                    <div class="nav-section-divider hidden md:block"></div>
+                    
+                    <a href="#" class="nav-link" data-section="1">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Architecture</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="2">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Delivery</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="3">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Knowledge</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="4">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Style</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link" data-section="5">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">GovTech</span>
+                        </span>
+                    </a>
+                    
+                    <div class="nav-section-divider hidden md:block"></div>
+                    
+                    <a href="#" class="nav-link" data-section="6">
+                        <span class="flex items-center gap-2">
+                            <span class="section-marker"></span>
+                            <span class="hidden sm:inline">Contact</span>
+                        </span>
+                    </a>
                 </div>
                 
-                <button id="nextBtn" class="nav-button text-sm">
-                    <span class="hidden md:inline">Next</span>
-                    <span class="md:hidden">Next</span>
-                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(→ Right Key)</span>
-                </button>
+                <!-- Controls - Same Row -->
+                <div class="flex items-center gap-1.5 md:gap-2">
+                    <button class="control-pill text-xs" id="tocBtn" title="Table of Contents">
+                        <span class="hidden md:inline">📑 ToC</span>
+                        <span class="md:hidden">📑</span>
+                    </button>
+                    <button class="control-pill text-xs" id="searchBtn" title="Search">
+                        <span class="hidden md:inline">🔍</span>
+                        <span class="md:hidden">🔍</span>
+                    </button>
+                    <button class="control-pill text-xs" id="kbdInfo" title="Keyboard shortcuts">
+                        <span class="hidden md:inline">⌨</span>
+                        <span class="md:hidden">⌨</span>
+                    </button>
+                    <button class="control-pill text-xs hidden md:inline-flex" id="decreaseFont">A-</button>
+                    <button class="control-pill text-xs hidden md:inline-flex" id="increaseFont">A+</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -53,7 +106,7 @@
         ============================================ -->
         
         <!-- Intro Slide 1: Name + Role -->
-<div class="slide active" data-section="0" data-slide="0">
+        <div class="slide active" data-section="0" data-slide="0">
   <div class="slide-content py-16">
 
     <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
@@ -72,93 +125,104 @@
       I bring clarity to complex systems.
     </p>
 
-    <div class="text-xl font-light" style="color: var(--text-secondary); line-height: 1.7;">
+    <div class="font-light text-1xl" style="color: var(--text-secondary); line-height: 1.7;">
       <strong style="color: var(--text-primary);">How to view this deck</strong><br><br>
-      • Use <strong>← →</strong> arrow keys or the top navigation buttons to move between slides.<br>
+      <div>
+      • Use <strong>← →</strong> arrow keys or the bottom navigation buttons to move between slides.<br>
       • Scroll down inside slides — many include <strong>full static prototypes</strong> (not abridged).<br>
       • Use the bottom bar to <strong>view sections, open the Table of Contents, search,</strong> or <strong>adjust text size.</strong>
     </div>
+    </div>
 
   </div>
-</div>
+        </div>
 
         <!-- Intro Slide 2: Professional Journey -->
         <div class="slide" data-section="0" data-slide="1">
-            <div class="slide-content py-16">
-                <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
-                    1.2 
-                </div>
-                <h2 class="text-6xl font-extralight mb-12 tracking-tight">Origins & Trajectory</h2>
+<div class="slide-content py-16">
+  <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
+    1.2 — Projects Overview
+  </div>
+  <h2 class="text-5xl font-extralight mb-6 tracking-tight">Projects Overview</h2>
+  <p class="text-xl font-light mb-8" style="color: var(--text-secondary);">
+    Context and impact at a glance. Click a row to view the project’s slide with screens/prototypes.
+  </p>
 
+  <div class="overflow-x-auto">
+    <table class="w-full overview-table" style="border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Context / Goal</th>
+          <th>Role</th>
+          <th>Period</th>
+          <th>Outcome / Impact</th>
+        </tr>
+      </thead>
+      <tbody>
 
-                                <p class="text-2xl font-light" style="color: var(--text-secondary); line-height: 1.6;">
-                   Born in <span class="tooltip">Crete<span class="tooltip-text">Small geography. Large capability. Clarity becomes culture.</span></span>. Developed globally.
-                </p>
+        <!-- Dipl.pro -->
+        <tr onclick="showSlide(2,0)" class="rowlink">
+          <td><strong>Dipl.pro — Cross-border UX architecture</strong></td>
+          <td>Unify fragmented gov info into one actionable answer</td>
+          <td>Systems & UX Architect</td>
+          <td>2024–25</td>
+          <td>Single-path decisions; lowers cognitive load in high-stress cases</td>
+        </tr>
 
-                
-                <!-- First Row: Three Boxes -->
-                <div class="timeline-cards">
-                    <!-- Design roots -->
-                    <div class="timeline-card">
-                        <div class="timeline-period">2002–2008</div>
-                        <div class="timeline-title">Design Foundations</div>
-                        <div class="timeline-location">Athens, Finland, Netherlands</div>
-                        <div class="timeline-description">
-                            • Visual systems thinking
-                            <br>• Early exposure to multicultural problem-solving
-                        </div>
-                    </div>
-                    
-                    <!-- Business and Systems -->
-                    <div class="timeline-card">
-                        <div class="timeline-period">2008–2013</div>
-                        <div class="timeline-title">Business & Systems Architecture</div>
-                        <div class="timeline-location"> Netherlands, Sweden, Shanghai</div>
-                        <div class="timeline-description">
-                            • Master’s (Design & Org. Systems)
-                            <br>• Master’s (Business Design)
-                        </div>
-                    </div>
-                    
-                    <!-- Execution and Velocity -->
-                    <div class="timeline-card">
-                        <div class="timeline-period">2013–2020</div>
-                        <div class="timeline-title">Execution and Velocity</div>
-                        <div class="timeline-location">Hong Kong</div>
-                        <div class="timeline-description">
-                            • PhD in Design
-                            <br>• Founded design strategy firm
-                            <br>• Worked under NDAs + cross-border complexity
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Second Row: Two Boxes -->
-                <div class="timeline-cards">
-                    <!-- Clarity & Capability -->
-                    <div class="timeline-card">
-                        <div class="timeline-period">2021–2025</div>
-                        <div class="timeline-title">Clarity & Capability</div>
-                        <div class="timeline-location">United Kingdom</div>
-                        <div class="timeline-description">
-                            • UX educator & systems designer
-                            <br>• Built internal tools that solved institutional chaos
-                            <br>• Designing knowledge infrastructure for scalable impact (Naisu Press)
-                        </div>
-                    </div>
-                    
-                    <!-- Deployment & Impact -->
-                    <div class="timeline-card">
-                        <div class="timeline-period">Next</div>
-                        <div class="timeline-title">Deployment & Impact</div>
-                        <div class="timeline-location">Singapore</div>
-                        <div class="timeline-description">• Where clarity + digital governance + velocity meet impact</div>
-                        <div class="timeline-learning">
-                            <strong>Ready to deliver impact.</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Mark Classification Tool -->
+        <tr onclick="showSlide(3,0)" class="rowlink">
+          <td><strong>Mark Classification Tool</strong></td>
+          <td>Consistent grading logic; remove ambiguity in assessment</td>
+          <td>Designer-Builder</td>
+          <td>2024</td>
+          <td>Standardised outcomes; faster, defendable decisions</td>
+        </tr>
+
+        <!-- Bulk Marksheet Generator -->
+        <tr onclick="showSlide(3,2)" class="rowlink">
+          <td><strong>Bulk Marksheet Document Generator</strong></td>
+          <td>Automate repetitive academic admin</td>
+          <td>Systems & UX</td>
+          <td>2023–24</td>
+          <td>Eliminated manual steps; ~300+ staff hours saved / term</td>
+        </tr>
+
+        <!-- Autonomy by Design -->
+        <tr onclick="showSlide(3,4)" class="rowlink">
+          <td><strong>Autonomy by Design (structured learning system)</strong></td>
+          <td>Reduce instruction noise; increase student output quality</td>
+          <td>Product/UX Architect</td>
+          <td>2022–24</td>
+          <td>Clear task progression; higher quality submissions with less friction</td>
+        </tr>
+
+        <!-- UX Dictionary -->
+        <tr onclick="showSlide(4,0)" class="rowlink">
+          <td><strong>UX Dictionary — 14,000+ structured terms</strong></td>
+          <td>Shared language for decisions at scale</td>
+          <td>Author & Systems Designer</td>
+          <td>2021–25</td>
+          <td>Faster alignment; fewer debates over terminology</td>
+        </tr>
+
+        <!-- Definition Quality Scorer -->
+        <tr onclick="showSlide(4,3)" class="rowlink">
+          <td><strong>Definition Quality Scorer</strong></td>
+          <td>Quality-control engine for definitions</td>
+          <td>Designer-Builder</td>
+          <td>2024–25</td>
+          <td>High clarity scores (<155 chars); consistent, defensible language</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <p class="text-sm mt-4" style="color: var(--text-tertiary);">
+    Fields shown: project • context/goal • role • period • outcome/impact. Full prototypes and screens in the project slides.
+  </p>
+</div>
         </div>
 
         <!-- Intro Slide 3: Operating Principle -->
@@ -3487,7 +3551,7 @@ One shared language for product, policy, and delivery.
                 <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
                     6.1
                 </div>
-<h2 class="text-6xl font-extralight mb-12 tracking-tight">GovTech is more than a job.<br>→ It’s responsibility for impact.</h2>
+<h2 class="text-6xl font-extralight mb-12 tracking-tight">GovTech is more than a job. <br>→ It’s responsibility for impact.</h2>
                 <p class="text-xl font-light" style="color: var(--text-secondary); line-height: 1.8;">
                     TThe work is not only performing duties. The work is advancing efficiency and outcomes.
                 </p>
@@ -3547,77 +3611,24 @@ One shared language for product, policy, and delivery.
 
     <!-- Button Bar -->
     <footer class="button-bar fixed bottom-0 w-full z-40">
-        <div class="max-w-7xl mx-auto px-4 md:px-8 py-3">
+        <div class="max-w-6xl mx-auto px-4 md:px-8 py-3">
             <div class="flex items-center justify-between gap-3">
-                <!-- Section Navigation -->
-                <div class="flex items-center gap-3 md:gap-6 flex-wrap">
-                    <a href="#" class="nav-link active" data-section="0">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Intro</span>
-                        </span>
-                    </a>
-                    
-                    <div class="nav-section-divider hidden md:block"></div>
-                    
-                    <a href="#" class="nav-link" data-section="1">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Architecture</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="2">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Delivery</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="3">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Knowledge</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="4">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Style</span>
-                        </span>
-                    </a>
-                    <a href="#" class="nav-link" data-section="5">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Impact</span>
-                        </span>
-                    </a>
-                    
-                    <div class="nav-section-divider hidden md:block"></div>
-                    
-                    <a href="#" class="nav-link" data-section="6">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Contact</span>
-                        </span>
-                    </a>
+                <button id="prevBtn" class="nav-button text-sm">
+                    <span class="hidden md:inline">Previous</span>
+                    <span class="md:hidden">Prev</span>
+                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(← Left Key)</span>
+                </button>
+                
+                <div class="flex items-center gap-3 md:gap-6">
+                    <div class="mini-progress hidden md:flex" id="miniProgress"></div>
+                    <span id="slideCounter" class="text-xs md:text-sm" style="color: var(--text-secondary);"></span>
                 </div>
                 
-                <!-- Controls - Same Row -->
-                <div class="flex items-center gap-1.5 md:gap-2">
-                    <button class="control-pill text-xs" id="tocBtn" title="Table of Contents">
-                        <span class="hidden md:inline">📑 ToC</span>
-                        <span class="md:hidden">📑</span>
-                    </button>
-                    <button class="control-pill text-xs" id="searchBtn" title="Search">
-                        <span class="hidden md:inline">🔍</span>
-                        <span class="md:hidden">🔍</span>
-                    </button>
-                    <button class="control-pill text-xs" id="kbdInfo" title="Keyboard shortcuts">
-                        <span class="hidden md:inline">⌨</span>
-                        <span class="md:hidden">⌨</span>
-                    </button>
-                    <button class="control-pill text-xs hidden md:inline-flex" id="decreaseFont">A-</button>
-                    <button class="control-pill text-xs hidden md:inline-flex" id="increaseFont">A+</button>
-                </div>
+                <button id="nextBtn" class="nav-button text-sm">
+                    <span class="hidden md:inline">Next</span>
+                    <span class="md:hidden">Next</span>
+                    <span class="text-xs hidden sm:inline" style="color: var(--text-tertiary);">(→ Right Key)</span>
+                </button>
             </div>
         </div>
     </footer>
@@ -3709,7 +3720,9 @@ One shared language for product, policy, and delivery.
   </div>
 </div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
+<script src="marking.js"></script>
+<script src="score.js"></script>
 
 </body>
 </html>

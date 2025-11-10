@@ -2750,3 +2750,22 @@ background-repeat: no-repeat;
   .dictionary-info { max-width: 100%; }
   .book.book--dictionary { --book-w: 260px; }
 }
+
+
+.overview-table thead th {
+  text-align: left; font-weight: 600; padding: .75rem 1rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color,#e5e7eb);
+}
+.overview-table td {
+  padding: .75rem 1rem; border-bottom: 1px solid var(--border-color,#f0f0f0);
+  vertical-align: top; line-height: 1.45;
+}
+.rowlink { cursor: pointer; }
+.rowlink:hover { background: var(--bg-secondary,#fafafa); }
+@media (max-width: 720px) {
+  .overview-table thead { display: none; }
+  .overview-table tr { display: block; padding: .6rem .2rem; }
+  .overview-table td { display: block; padding: .25rem 0; border: 0; }
+  .overview-table td:first-child { font-weight: 600; margin-top: .35rem; }
+}

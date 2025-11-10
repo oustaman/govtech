@@ -100,12 +100,26 @@ function updateDisplay() {
   // ---- Mini progress dots: build for full deck ----
   miniProgress.innerHTML = '';
   for (let i = 0; i < totalSlidesAll; i++) {
+    // Create container for dot and number
+    const dotContainer = document.createElement('div');
+    dotContainer.className = 'dot-container';
+    
+    // Add spacing between dots (every 5th dot gets extra margin)
+    if (i > 0 && i % 5 === 0) {
+        dotContainer.style.marginLeft = '6px';
+    }
+    
     const dot = document.createElement('div');
     dot.className = 'mini-progress-dot' + (i === globalIndex ? ' active' : '');
     dot.setAttribute('aria-label', `Go to slide ${i + 1} of ${totalSlidesAll}`);
     dot.setAttribute('role', 'button');
     dot.tabIndex = 0;
-
+    
+    // Add slide number below dot
+    const number = document.createElement('div');
+    number.className = 'dot-number';
+    number.textContent = i + 1;
+    
     // Optional: make dots clickable to jump anywhere in deck
     dot.addEventListener('click', () => {
       const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(i);
@@ -120,8 +134,11 @@ function updateDisplay() {
         showSlide(sectionIndex, slideIndex);
       }
     });
-
-    miniProgress.appendChild(dot);
+    
+    // Assemble dot with number
+    dotContainer.appendChild(dot);
+    dotContainer.appendChild(number);
+    miniProgress.appendChild(dotContainer);
   }
 
   // ---- Global progress bar width (unchanged logic, now global) ----
@@ -137,7 +154,7 @@ function updateDisplay() {
   if (prevBtn) prevBtn.disabled = isFirstSlide;
   if (nextBtn) nextBtn.disabled = isLastSlide;
   
-  // NEW: Call updateSectionHighlight whenever the slide changes
+  // NEW: Call updateSectionHighlight whenever slide changes
   updateSectionHighlight();
 }
 

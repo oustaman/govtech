@@ -71,6 +71,7 @@
 html { 
   font-size: calc(var(--font-size) * 16px);
   scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on your header height */
 }
 
 body {
@@ -1153,6 +1154,9 @@ input:focus, button:focus, a:focus, [tabindex]:focus-visible {
   background: white;
   cursor: pointer;
   transition: all 0.2s;
+
+  /* 🔒 Prevent breaking into two lines */
+  white-space: nowrap;
 }
 
 .chip[aria-pressed="true"] {
@@ -1645,19 +1649,23 @@ input:focus, button:focus, a:focus, [tabindex]:focus-visible {
   }
 }
 
-/* Desktop notice */
 .desktop-notice {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  background-color: var(--accent-color);
+  width: 100vw;
+  height: 100vh;              /* full screen height */
+
+  display: flex;              /* enables centering */
+  justify-content: center;    /* horizontal centering */
+  align-items: center;        /* vertical centering */
+  text-align: center;         /* center multiline text */
+
+  background: var(--accent-color);
   color: white;
-  text-align: center;
-  padding: 0.5rem;
-  font-size: 0.875rem;
-  z-index: 1000;
+  padding: 2rem;
+  font-size: 1.5rem;
+  z-index: 9999;              /* on top of everything */
 }
 
 /* Button Bar */
@@ -2767,8 +2775,7 @@ background-repeat: no-repeat;
   transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   outline:none; width:100%;
 }
-.project-card:focus-visible{ box-shadow:0 0 0 3px rgba(59,130,246,.35); transform:translateY(-1px); }
-.project-card:hover{ transform:translateY(-2px); border-color:#d8dbe2; box-shadow:0 6px 24px rgba(0,0,0,.06); }
+.project-card:focus-visible{ box-shadow:0 0 0 2px rgba(59,130,246,.35); transform:translateY(-1px); }
 
 .project-card .thumb{
   aspect-ratio: 16/9;
@@ -2868,6 +2875,7 @@ background-repeat: no-repeat;
 .slide:target {
   display: block !important;
   z-index: 10;
+  scroll-margin-top: 80px; /* Modern alternative to scroll-padding-top */
 }
 
 /* Style for project cards to make them look like buttons */
@@ -2888,4 +2896,69 @@ background-repeat: no-repeat;
 .project-card:focus {
   outline: 2px solid #4a90e2;
   outline-offset: 2px;
+}
+
+
+.instruction-box {
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  font-size: 1.35rem;
+  line-height: 1.65;
+}
+
+.instruction-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.instruction-box li {
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px){
+  /* Only affect these three */
+  #tocBtn .md\:inline,
+  #searchBtn .md\:inline,
+  #kbdInfo .md\:inline { display:none !important; }
+
+  #tocBtn .md\:hidden,
+  #searchBtn .md\:hidden,
+  #kbdInfo .md\:hidden { display:inline !important; }
+
+  #tocBtn.control-pill,
+  #searchBtn.control-pill,
+  #kbdInfo.control-pill{
+    padding:.28rem; width:30px; height:30px; display:inline-grid; place-items:center;
+  }
+}
+
+/* Slightly tighten the A− / A+ pills */
+#decreaseFont.control-pill, #increaseFont.control-pill{ padding:.26rem .5rem; font-size:.9rem; }
+
+/* Container for the unified pill */
+.font-controls {
+  display: inline-flex;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px; /* full pill */
+  overflow: hidden; /* hides individual button shape corners */
+}
+
+/* Buttons inside */
+.font-controls button {
+  padding: 0.3rem 0.75rem;
+  background: var(--bg-secondary);
+  border: none;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+/* Hover + active state */
+.font-controls button:hover {
+  background: #eee;
+}
+
+.font-controls button:active {
+  background: #ddd;
 }

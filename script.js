@@ -84,7 +84,10 @@ function handleHashChange() {
             if (!isNaN(sectionIndex) && !isNaN(slideIndex)) {
                 // Check if this is different from current slide
                 if (sectionIndex !== currentSection || slideIndex !== currentSlide) {
-                    showSlide(sectionIndex, slideIndex);
+                    // Add a small delay to ensure DOM is ready
+                    setTimeout(() => {
+                        showSlide(sectionIndex, slideIndex);
+                    }, 100);
                 }
             }
         }
@@ -633,6 +636,66 @@ document.addEventListener('keydown', (e) => {
             if (kbdModal) kbdModal.classList.remove('active');
             break;
     }
+});
+
+        // Add this function to handle the notice
+        function checkViewportAndSetNotice() {
+            const desktopNotice = document.querySelector('.desktop-notice');
+            const body = document.body;
+            
+            if (window.innerWidth <= 1024) {
+                // Show notice on tablet and mobile
+                if (desktopNotice) desktopNotice.style.display = 'block';
+                if (body) body.classList.add('has-desktop-notice');
+            } else {
+                // Hide notice on desktop
+                if (desktopNotice) desktopNotice.style.display = 'none';
+                if (body) body.classList.remove('has-desktop-notice');
+            }
+        }
+
+        // Add to your initialization function
+        function initPortfolio() {
+            // Only initialize if we're on portfolio page
+            if (!document.querySelector('.slide')) return;
+            
+            // Check viewport and set notice visibility
+            checkViewportAndSetNotice();
+            
+            updateDisplay();
+            generateToC();
+            updateNav();
+            
+            // Make clicks jump to that section
+            sectionLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const s = Number(link.dataset.section) || 0;
+                    showSlide(s, 0);               // your existing function
+                });
+            });
+            
+            // Accessible focus + keyboard
+            sectionLinks.forEach(link => link.setAttribute('role', 'link'));
+            sectionLinks.forEach(link => link.tabIndex = 0);
+            sectionLinks.forEach(link => {
+                link.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const s = Number(link.dataset.section) || 0;
+                        showSlide(s, 0);
+                    }
+                });
+            });
+        }
+
+        // Add window resize listener to handle orientation changes
+        window.addEventListener('resize', checkViewportAndSetNotice);
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initPortfolio();
+            handleHashChange(); // Check for hash on page load
 });
 
 // Initialize on load (MODIFIED)

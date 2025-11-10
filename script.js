@@ -10,6 +10,17 @@ let currentSlide = 0;
 let isDarkMode = false;
 let fontSize = 1;
 
+// Special slides with tooltips
+const specialSlides = [
+    { slideNumber: 2, label: "Projects" },
+    { slideNumber: 6, label: "Dipl.pro" },
+    { slideNumber: 11, label: "Mark Classification Tool" },
+    { slideNumber: 12, label: "Marksheet Generator" },
+    { slideNumber: 15, label: "Autonomy by Design" },
+    { slideNumber: 16, label: "UX Dictionary" },
+    { slideNumber: 18, label: "Definition Quality Scorer" }
+];
+
 // Get all slides grouped by section
 const slides = document.querySelectorAll('.slide');
 const sections = [];
@@ -56,6 +67,36 @@ const tocContent = document.getElementById('tocContent');
 // NEW: Grab all section links (once)
 const sectionLinks = Array.from(document.querySelectorAll('.nav-link'));
 
+// ============================================
+// HASH CHANGE HANDLING (NEW)
+// ============================================
+function handleHashChange() {
+    const hash = window.location.hash.substring(1); // Remove #
+    
+    if (hash) {
+        // Parse hash to get section and slide
+        const parts = hash.split('-slide-');
+        if (parts.length === 2) {
+            const sectionIndex = parseInt(parts[0].replace('section-', ''));
+            const slideIndex = parseInt(parts[1]);
+            
+            // Only update if valid indices
+            if (!isNaN(sectionIndex) && !isNaN(slideIndex)) {
+                // Check if this is different from current slide
+                if (sectionIndex !== currentSection || slideIndex !== currentSlide) {
+                    showSlide(sectionIndex, slideIndex);
+                }
+            }
+        }
+    }
+}
+
+// Add event listener for hash changes
+window.addEventListener('hashchange', handleHashChange);
+
+// ============================================
+// SLIDE NAVIGATION FUNCTIONS
+// ============================================
 // Show slide function
 function showSlide(sectionIndex, slideIndex) {
     // Hide all slides
@@ -80,91 +121,11 @@ function showSlide(sectionIndex, slideIndex) {
     updateNav();
 }
 
-// Update display elements
-function updateDisplay() {
-  if (!slideCounter || !miniProgress || !sectionProgress) return;
-
-  // Total deck slides (global)
-  const totalSlidesAll = sections.reduce((acc, sec) => acc + sec.length, 0);
-
-  // How many slides up to (and including) the current one
-  let slidesSoFar = 0;
-  for (let i = 0; i < currentSection; i++) slidesSoFar += sections[i].length;
-  slidesSoFar += currentSlide + 1; // 1-based position in deck
-
-  const globalIndex = slidesSoFar - 1; // 0-based index in deck
-
-  // ---- Counter: show global position ----
-  slideCounter.textContent = `${slidesSoFar} / ${totalSlidesAll}`;
-
-  // ---- Mini progress dots: build for full deck ----
-  miniProgress.innerHTML = '';
-  for (let i = 0; i < totalSlidesAll; i++) {
-    // Create container for dot and number
-    const dotContainer = document.createElement('div');
-    dotContainer.className = 'dot-container';
-    
-    // Add spacing between dots (every 5th dot gets extra margin)
-    if (i > 0 && i % 5 === 0) {
-        dotContainer.style.marginLeft = '6px';
-    }
-    
-    const dot = document.createElement('div');
-    dot.className = 'mini-progress-dot' + (i === globalIndex ? ' active' : '');
-    dot.setAttribute('aria-label', `Go to slide ${i + 1} of ${totalSlidesAll}`);
-    dot.setAttribute('role', 'button');
-    dot.tabIndex = 0;
-    
-    // Add slide number below dot
-    const number = document.createElement('div');
-    number.className = 'dot-number';
-    number.textContent = i + 1;
-    
-    // Optional: make dots clickable to jump anywhere in deck
-    dot.addEventListener('click', () => {
-      const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(i);
-      showSlide(sectionIndex, slideIndex);
-    });
-
-    // Optional: keyboard access on dots
-    dot.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(i);
-        showSlide(sectionIndex, slideIndex);
-      }
-    });
-    
-    // Assemble dot with number
-    dotContainer.appendChild(dot);
-    dotContainer.appendChild(number);
-    miniProgress.appendChild(dotContainer);
-  }
-
-  // ---- Global progress bar width (unchanged logic, now global) ----
-  const progressPercent = (slidesSoFar / totalSlidesAll) * 100;
-  sectionProgress.style.width = progressPercent + '%';
-
-  // ---- Prev/Next disable logic (unchanged) ----
-  const isFirstSlide = currentSection === 0 && currentSlide === 0;
-  const isLastSlide =
-    currentSection === sections.length - 1 &&
-    currentSlide === sections[currentSection].length - 1;
-
-  if (prevBtn) prevBtn.disabled = isFirstSlide;
-  if (nextBtn) nextBtn.disabled = isLastSlide;
-  
-  // NEW: Call updateSectionHighlight whenever slide changes
-  updateSectionHighlight();
-}
-
-// NEW: Helper function to keep the highlight in sync with the current section
-function updateSectionHighlight() {
-    sectionLinks.forEach(link => {
-        const isActive = Number(link.dataset.section) === currentSection;
-        link.classList.toggle('active', isActive);
-        link.setAttribute('aria-current', isActive ? 'page' : 'false');
-    });
+// Add this function to your script.js file
+function showSlideByAbsoluteNumber(absoluteSlideNumber) {
+    // Convert absolute slide number to section and slide indices
+    const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(absoluteSlideNumber - 1);
+    showSlide(sectionIndex, slideIndex);
 }
 
 // Navigation functions
@@ -190,6 +151,158 @@ function goToSection(sectionIndex) {
     }
 }
 
+// ============================================
+// DISPLAY UPDATE FUNCTIONS
+// ============================================
+// Update display elements
+function updateDisplay() {
+  if (!slideCounter || !miniProgress || !sectionProgress) return;
+
+  // Total deck slides (global)
+  const totalSlidesAll = sections.reduce((acc, sec) => acc + sec.length, 0);
+
+  // How many slides up to (and including) current one
+  let slidesSoFar = 0;
+  for (let i = 0; i < currentSection; i++) slidesSoFar += sections[i].length;
+  slidesSoFar += currentSlide + 1; // 1-based position in deck
+
+  const globalIndex = slidesSoFar - 1; // 0-based index in deck
+
+  // ---- Counter: show global position ----
+  slideCounter.textContent = `${slidesSoFar} / ${totalSlidesAll}`;
+
+  // ---- Mini progress dots: build for full deck ----
+  miniProgress.innerHTML = '';
+  for (let i = 0; i < totalSlidesAll; i++) {
+    // Create container for dot
+    const dotContainer = document.createElement('div');
+    dotContainer.className = 'dot-container';
+    
+    // Add spacing between sections (every 5th dot gets extra margin)
+    if (i > 0 && i % 5 === 0) {
+        dotContainer.style.marginLeft = '8px';
+    }
+    
+    const dot = document.createElement('div');
+    const slideNumber = i + 1; // Convert to 1-based for comparison
+    
+    // Check if this is a special slide
+    const isSpecialSlide = specialSlides.some(special => special.slideNumber === slideNumber);
+    
+    // Set dot classes
+    let dotClasses = 'mini-progress-dot';
+    if (i === globalIndex) {
+        dotClasses += ' active';
+    }
+    if (isSpecialSlide) {
+        dotClasses += ' special-dot';
+    }
+    
+    dot.className = dotClasses;
+    dot.setAttribute('aria-label', `Go to slide ${i + 1} of ${totalSlidesAll}`);
+    dot.setAttribute('role', 'button');
+    dot.tabIndex = 0;
+    
+    // Add tooltip for special slides
+    if (isSpecialSlide) {
+        const specialSlide = specialSlides.find(special => special.slideNumber === slideNumber);
+        
+        // Create tooltip element
+        const tooltip = document.createElement('div');
+        tooltip.className = 'dot-tooltip';
+        tooltip.textContent = specialSlide.label;
+        tooltip.style.position = 'absolute';
+        tooltip.style.bottom = '20px';
+        tooltip.style.left = '50%';
+        tooltip.style.transform = 'translateX(-50%)';
+        tooltip.style.backgroundColor = 'var(--tooltip-bg, #333)';
+        tooltip.style.color = 'var(--tooltip-color, #fff)';
+        tooltip.style.padding = '4px 8px';
+        tooltip.style.borderRadius = '4px';
+        tooltip.style.fontSize = '12px';
+        tooltip.style.whiteSpace = 'nowrap';
+        tooltip.style.opacity = '0';
+        tooltip.style.pointerEvents = 'none';
+        tooltip.style.transition = 'opacity 0.2s ease';
+        tooltip.style.zIndex = '1000';
+        
+        // Add tooltip to dot container
+        dotContainer.appendChild(tooltip);
+        
+        // Show tooltip on hover
+        dot.addEventListener('mouseenter', () => {
+            tooltip.style.opacity = '1';
+        });
+        
+        dot.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = '0';
+        });
+    }
+    
+    // Optional: make dots clickable to jump anywhere in deck
+    dot.addEventListener('click', () => {
+        const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(i);
+        showSlide(sectionIndex, slideIndex);
+    });
+
+    // Optional: keyboard access on dots
+    dot.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const { sectionIndex, slideIndex } = getSectionSlideFromGlobalIndex(i);
+            showSlide(sectionIndex, slideIndex);
+        }
+    });
+    
+    // Assemble container
+    dotContainer.appendChild(dot);
+    miniProgress.appendChild(dotContainer);
+  }
+
+  // ---- Global progress bar width (unchanged logic, now global) ----
+  const progressPercent = (slidesSoFar / totalSlidesAll) * 100;
+  sectionProgress.style.width = progressPercent + '%';
+
+  // ---- Prev/Next disable logic (unchanged) ----
+  const isFirstSlide = currentSection === 0 && currentSlide === 0;
+  const isLastSlide =
+    currentSection === sections.length - 1 &&
+    currentSlide === sections[currentSection].length - 1;
+
+  if (prevBtn) prevBtn.disabled = isFirstSlide;
+  if (nextBtn) nextBtn.disabled = isLastSlide;
+  
+  // NEW: Call updateSectionHighlight whenever slide changes
+  updateSectionHighlight();
+}
+
+// NEW: Helper function to keep highlight in sync with current section
+function updateSectionHighlight() {
+    sectionLinks.forEach(link => {
+        const isActive = Number(link.dataset.section) === currentSection;
+        link.classList.toggle('active', isActive);
+        link.setAttribute('aria-current', isActive ? 'page' : 'false');
+    });
+}
+
+// Add this function to fix the error
+function updateNav() {
+    // Update navigation highlights
+    updateSectionHighlight();
+    
+    // Update prev/next button states
+    const isFirstSlide = currentSection === 0 && currentSlide === 0;
+    const isLastSlide =
+        currentSection === sections.length - 1 &&
+        currentSlide === sections[currentSection].length - 1;
+
+    if (prevBtn) prevBtn.disabled = isFirstSlide;
+    if (nextBtn) nextBtn.disabled = isLastSlide;
+}
+
+// ============================================
+// TABLE OF CONTENTS & SEARCH
+// ============================================
 // Generate Table of Contents
 function generateToC() {
     if (!tocContent) return;
@@ -287,6 +400,9 @@ function performSearch(query) {
     });
 }
 
+// ============================================
+// UI CONTROL FUNCTIONS
+// ============================================
 // Dark mode
 function toggleDarkMode() {
     isDarkMode = !isDarkMode;
@@ -332,9 +448,8 @@ function toggleVisaDropdown() {
 }
 
 // ============================================
-// INITIALIZATION
+// HELPER FUNCTIONS
 // ============================================
-
 function getSectionSlideFromGlobalIndex(globalIndex) {
   let acc = 0;
   for (let s = 0; s < sections.length; s++) {
@@ -348,6 +463,9 @@ function getSectionSlideFromGlobalIndex(globalIndex) {
   return { sectionIndex: sections.length - 1, slideIndex: sections[sections.length - 1].length - 1 };
 }
 
+// ============================================
+// INITIALIZATION
+// ============================================
 function initPortfolio() {
     // Only initialize if we're on portfolio page
     if (!document.querySelector('.slide')) return;
@@ -517,5 +635,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', initPortfolio);
+// Initialize on load (MODIFIED)
+document.addEventListener('DOMContentLoaded', () => {
+    initPortfolio();
+    handleHashChange(); // Check for hash on page load
+});

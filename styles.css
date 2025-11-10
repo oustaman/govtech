@@ -2795,11 +2795,11 @@ background-repeat: no-repeat;
   color:var(--text-secondary,#4b5563);
 }
 
+
 .dot-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: inline-block;
     margin: 0 2px;
+    position: relative;
 }
 
 .mini-progress-dot {
@@ -2811,62 +2811,81 @@ background-repeat: no-repeat;
     user-select: none;
     transition: all 0.2s ease;
     opacity: 0.5;
-}
-
-.dot-number {
-    font-size: 9px;
-    color: var(--text-tertiary);
-    margin-top: 2px;
-    font-weight: 500;
-}
-
-.mini-progress-dot.active {
-    background: var(--text-primary);
-    opacity: 1;
-    border-color: var(--text-primary);
-}
-
-.mini-progress-dot.active + .dot-number {
-    color: var(--text-primary);
-}
-
-.dot-container {
+    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 0 2px;
-}
-
-.mini-progress-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 1px solid var(--text-tertiary);
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.2s ease;
-    opacity: 0.5;
-}
-
-.dot-number {
-    font-size: 9px;
-    color: var(--text-tertiary);
-    margin-top: 2px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    justify-content: center;
 }
 
 .mini-progress-dot.active {
     background: var(--text-primary);
     opacity: 1;
     border-color: var(--text-primary);
-}
-
-.mini-progress-dot.active + .dot-number {
-    color: var(--text-primary);
 }
 
 .mini-progress-dot:hover {
     opacity: 0.8;
     transform: scale(1.1);
+}
+
+/* Special dots styling */
+.mini-progress-dot.special-dot {
+    background-color: var(--special-dot-bg, #888);
+    opacity: 0.7;
+    border-color: var(--special-dot-border, #888);
+}
+
+.mini-progress-dot.special-dot.active {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+/* Tooltip styling */
+.dot-tooltip {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--tooltip-bg, #333);
+    color: var(--tooltip-color, #fff);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+}
+
+/* Dark mode support */
+.dark-mode .dot-tooltip {
+    background-color: var(--tooltip-bg-dark, #222);
+    color: var(--tooltip-color-dark, #fff);
+}
+
+/* Target selector for slides */
+.slide:target {
+  display: block !important;
+  z-index: 10;
+}
+
+/* Style for project cards to make them look like buttons */
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure project cards maintain their button appearance */
+.project-card:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
 }

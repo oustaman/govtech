@@ -26,12 +26,12 @@
             <div class="flex items-center justify-between gap-3">
                 <!-- Section Navigation -->
                 <div class="flex items-center gap-3 md:gap-6 flex-wrap">
-                    <a href="#" class="nav-link active" data-section="0">
-                        <span class="flex items-center gap-2">
-                            <span class="section-marker"></span>
-                            <span class="hidden sm:inline">Intro</span>
-                        </span>
-                    </a>
+            <a href="#section-0-slide-0" class="nav-link active">
+                <span class="flex items-center gap-2">
+                    <span class="section-marker"></span>
+                    <span class="hidden sm:inline">Intro</span>
+                </span>
+            </a>
                     
                     <div class="nav-section-divider hidden md:block"></div>
                     
@@ -142,127 +142,123 @@
 
   </div>
         </div>
+<!-- Intro Slide 2: -->
+<div class="slide" id="slide-projects" data-section="0" data-slide="1">
+    <div class="slide-content py-16">
+        <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
+            1.2 
+        </div>
+        <h2 class="text-6xl font-extralight mb-12 tracking-tight">Projects Overview</h2>
 
-        <!-- Intro Slide 2: Professional Journey -->
-        <div class="slide" data-section="0" data-slide="1">
-            <div class="slide-content py-16">
-                <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
-                    1.2 
-                </div>
-                <h2 class="text-6xl font-extralight mb-12 tracking-tight">Projects Overview</h2>
+        <p class="text-xl font-light mb-10" style="color: var(--text-secondary);">
+            Six decision-focused builds. Click a card to open project with screens & prototypes.
+        </p>
 
+        <div class="project-grid">
+                        <!-- Dipl.pro -->
+                <a href="#section-1-slide-0" class="project-card" aria-label="Open Dipl.pro">
+                    <div class="thumb" style="--img:url('img/diplpro-thumb.png');"></div>
+                    <div class="body">
+                        <div class="row">
+                            <h3>Dipl.pro</h3>
+                            <span class="chip">2024–25</span>
+                        </div>
+                        <p class="kicker">Cross-border UX architecture</p>
+                        <p class="impact">Unifies fragmented gov info into one clear answer.</p>
+                        <div class="meta">
+                            <span class="tag">Systems & UX Architect</span>
+                            <span class="tag">Policy → Interface</span>
+                        </div>
+                    </div>
+                </a>
 
-  <p class="text-xl font-light mb-10" style="color: var(--text-secondary);">
-    Six decision-focused builds. Click a card to open the project with screens & prototypes.
-  </p>
+                <!-- Mark Classification Tool -->
+                <a href="#section-2-slide-0" class="project-card" aria-label="Open Mark Classification Tool">
+                    <div class="thumb" style="--img:url('img/mark-class-thumb.png');"></div>
+                    <div class="body">
+                        <div class="row">
+                            <h3>Mark Classification Tool</h3>
+                            <span class="chip">2024</span>
+                        </div>
+                        <p class="kicker">Decision rules for assessment</p>
+                        <p class="impact">Removes ambiguity; faster, defendable outcomes.</p>
+                        <div class="meta">
+                            <span class="tag">Designer-Builder</span>
+                            <span class="tag">Governance</span>
+                        </div>
+                    </div>
+                </a>
 
-  <div class="project-grid">
+                <!-- Bulk Marksheet Generator -->
+                <a href="#section-2-slide-1" class="project-card" aria-label="Open Bulk Marksheet Generator">
+                    <div class="thumb" style="--img:url('img/marksheet-thumb.png');"></div>
+                    <div class="body">
+                        <div class="row">
+                            <h3>Bulk Marksheet Generator</h3>
+                            <span class="chip">2023–24</span>
+                        </div>
+                        <p class="kicker">Admin automation</p>
+                        <p class="impact">Eliminated manual steps; ~300+ staff hours saved / term.</p>
+                        <div class="meta">
+                            <span class="tag">Systems & UX</span>
+                            <span class="tag">Delivery</span>
+                        </div>
+                    </div>
+                </a>
 
-    <!-- Dipl.pro -->
-    <button class="project-card" onclick="showSlide(2,1)" aria-label="Open Dipl.pro">
-      <div class="thumb" style="--img:url('img/diplpro-thumb.png');"></div>
-      <div class="body">
-        <div class="row">
-          <h3>Dipl.pro</h3>
-          <span class="chip">2024–25</span>
-        </div>
-        <p class="kicker">Cross-border UX architecture</p>
-        <p class="impact">Unifies fragmented gov info into one clear answer.</p>
-        <div class="meta">
-          <span class="tag">Systems & UX Architect</span>
-          <span class="tag">Policy → Interface</span>
-        </div>
-      </div>
-    </button>
+                <!-- Autonomy by Design -->
+                <a href="#section-2-slide-4" class="project-card" aria-label="Open Autonomy by Design">
+                    <div class="thumb" style="--img:url('img/autonomy-thumb.png');"></div>
+                    <div class="body">
+                        <div class="row">
+                            <h3>Autonomy by Design</h3>
+                            <span class="chip">2022–24</span>
+                        </div>
+                        <p class="kicker">Structured learning system</p>
+                        <p class="impact">Clear progression; higher-quality outputs with less friction.</p>
+                        <div class="meta">
+                            <span class="tag">Product/UX Architect</span>
+                            <span class="tag">Education</span>
+                        </div>
+                    </div>
+                </a>
 
-    <!-- Mark Classification Tool -->
-    <button class="project-card" onclick="showSlide(3,1)" aria-label="Open Mark Classification Tool">
-      <div class="thumb" style="--img:url('img/mark-class-thumb.png');"></div>
-      <div class="body">
-        <div class="row">
-          <h3>Mark Classification Tool</h3>
-          <span class="chip">2024</span>
-        </div>
-        <p class="kicker">Decision rules for assessment</p>
-        <p class="impact">Removes ambiguity; faster, defendable outcomes.</p>
-        <div class="meta">
-          <span class="tag">Designer-Builder</span>
-          <span class="tag">Governance</span>
-        </div>
-      </div>
-    </button>
+                <!-- UX Dictionary -->
+                <a href="#section-3-slide-0" class="project-card" aria-label="Open UX Dictionary">
+                    <div class="thumb" style="--img:url('img/uxdict-thumb.png');"></div>
+                    <div class="body">
+                        <div class="row">
+                            <h3>UX Dictionary</h3>
+                            <span class="chip">2021–25</span>
+                        </div>
+                        <p class="kicker">14,000+ structured terms</p>
+                        <p class="impact">Shared language → faster alignment & decisions.</p>
+                        <div class="meta">
+                            <span class="tag">Author & Systems Designer</span>
+                            <span class="tag">Knowledge</span>
+                        </div>
+                    </div>
+                </a>
 
-    <!-- Bulk Marksheet Generator -->
-    <button class="project-card" onclick="showSlide(3,2)" aria-label="Open Bulk Marksheet Generator">
-      <div class="thumb" style="--img:url('img/marksheet-thumb.png');"></div>
-      <div class="body">
-        <div class="row">
-          <h3>Bulk Marksheet Generator</h3>
-          <span class="chip">2023–24</span>
+                <!-- Definition Quality Scorer -->
+                <a href="#section-3-slide-3" class="project-card" aria-label="Open Definition Quality Scorer">
+                    <div class="thumb" style="--img:url('img/defscore-thumb.png');"></div>
+                    <div class="body">
+                        <div class="row">
+                            <h3>Definition Quality Scorer</h3>
+                            <span class="chip">2024–25</span>
+                        </div>
+                        <p class="kicker">Clarity QA engine</p>
+                        <p class="impact">Enforces concise, high-clarity definitions (&lt;155 chars).</p>
+                        <div class="meta">
+                            <span class="tag">Designer-Builder</span>
+                            <span class="tag">Quality</span>
+                        </div>
+                    </div>
+                </a>    
         </div>
-        <p class="kicker">Admin automation</p>
-        <p class="impact">Eliminated manual steps; ~300+ staff hours saved / term.</p>
-        <div class="meta">
-          <span class="tag">Systems & UX</span>
-          <span class="tag">Delivery</span>
-        </div>
-      </div>
-    </button>
-
-    <!-- Autonomy by Design -->
-    <button class="project-card" onclick="showSlide(3,5)" aria-label="Open Autonomy by Design">
-      <div class="thumb" style="--img:url('img/autonomy-thumb.png');"></div>
-      <div class="body">
-        <div class="row">
-          <h3>Autonomy by Design</h3>
-          <span class="chip">2022–24</span>
-        </div>
-        <p class="kicker">Structured learning system</p>
-        <p class="impact">Clear progression; higher-quality outputs with less friction.</p>
-        <div class="meta">
-          <span class="tag">Product/UX Architect</span>
-          <span class="tag">Education</span>
-        </div>
-      </div>
-    </button>
-
-    <!-- UX Dictionary -->
-    <button class="project-card" onclick="showSlide(4,1)" aria-label="Open UX Dictionary">
-      <div class="thumb" style="--img:url('img/uxdict-thumb.png');"></div>
-      <div class="body">
-        <div class="row">
-          <h3>UX Dictionary</h3>
-          <span class="chip">2021–25</span>
-        </div>
-        <p class="kicker">14,000+ structured terms</p>
-        <p class="impact">Shared language → faster alignment & decisions.</p>
-        <div class="meta">
-          <span class="tag">Author & Systems Designer</span>
-          <span class="tag">Knowledge</span>
-        </div>
-      </div>
-    </button>
-
-    <!-- Definition Quality Scorer -->
-    <button class="project-card" onclick="showSlide(4,4)" aria-label="Open Definition Quality Scorer">
-      <div class="thumb" style="--img:url('img/defscore-thumb.png');"></div>
-      <div class="body">
-        <div class="row">
-          <h3>Definition Quality Scorer</h3>
-          <span class="chip">2024–25</span>
-        </div>
-        <p class="kicker">Clarity QA engine</p>
-        <p class="impact">Enforces concise, high-clarity definitions (&lt;155 chars).</p>
-        <div class="meta">
-          <span class="tag">Designer-Builder</span>
-          <span class="tag">Quality</span>
-        </div>
-      </div>
-    </button>
-
-  </div>
-            </div>
-        </div>
+    </div>
+</div>
 
         <!-- Intro Slide 3: Operating Principle -->
         <div class="slide" data-section="0" data-slide="2">
@@ -3592,7 +3588,7 @@ One shared language for product, policy, and delivery.
                 </div>
 <h2 class="text-6xl font-extralight mb-12 tracking-tight">GovTech is more than a job. <br>→ It’s responsibility for impact.</h2>
                 <p class="text-xl font-light" style="color: var(--text-secondary); line-height: 1.8;">
-                    TThe work is not only performing duties. The work is advancing efficiency and outcomes.
+                    The work is not only performing duties. The work is advancing efficiency and outcomes.
                 </p>
             </div>
         </div>
@@ -3762,6 +3758,7 @@ One shared language for product, policy, and delivery.
 <script src="script.js"></script>
 <script src="marking.js"></script>
 <script src="score.js"></script>
+
 
 </body>
 </html>

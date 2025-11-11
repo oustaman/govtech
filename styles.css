@@ -503,7 +503,7 @@ input:focus, button:focus, a:focus, [tabindex]:focus-visible {
 .card {
   background: white;
   border-radius: 16px;
-  /* box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);*/ 
+  border: 1px solid rgba(0,0,0,0.12); /* ← 1px subtle outline */
   padding: 35px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -1974,30 +1974,35 @@ input:focus, button:focus, a:focus, [tabindex]:focus-visible {
   color: var(--text-primary);
 }
 
+/* ---- Clean version ---- */
 .methodology-table {
   width: 100%;
   border-collapse: collapse;
 }
 
+/* Shared cell styles */
 .methodology-table th,
 .methodology-table td {
-  padding: 0.875rem;
+  padding: 1.25rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Header row only */
 .methodology-table th {
   background-color: var(--bg-tertiary);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
 }
 
+/* Body cells */
 .methodology-table td {
-  font-size: 0.875rem;
+  font-size: 1.02rem;
   color: var(--text-primary);
 }
 
+/* Remove bottom border from last row */
 .methodology-table tr:last-child td {
   border-bottom: none;
 }
@@ -2962,3 +2967,70 @@ background-repeat: no-repeat;
 .font-controls button:active {
   background: #ddd;
 }
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--n-300);
+  background: #f8f8f8;
+  color: var(--text-primary);
+}
+
+/* Position it in the top right of the card */
+.badge-top {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+/* ================================
+   ✨ FINAL SPREADSHEET TABLE STYLES
+   Overrides everything above
+   ================================ */
+
+/* uniform grey grid on all cells */
+#rubrictable, #feedbackTable {
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  width: 100%;
+}
+
+#rubrictable th, #rubrictable td,
+#feedbackTable th, #feedbackTable td {
+  border: 1px solid #d9d9d9 !important; /* light Excel-style border */
+  padding: 6px 8px !important;
+}
+
+/* header */
+#rubrictable thead th,
+#feedbackTable thead th {
+  background: #fafafa !important;
+  font-weight: 600;
+  color: #444;
+}
+
+/* ✅ SINGLE CELL hover highlight */
+#rubrictable td:hover,
+#feedbackTable td:hover {
+  background: #fff8d6 !important;   /* pale yellow */
+  transition: background 0.15s ease;
+  cursor: text;
+}
+
+/* focused (editing) cell – subtle outline */
+#rubrictable [contenteditable="true"]:focus,
+#feedbackTable [contenteditable="true"]:focus {
+  outline: 2px solid #ffce45 !important;
+  outline-offset: -2px;
+  background: #fff6bb !important;
+}
+
+
+.css-magnifier {
+  position: relative;
+  display: inline-block;
+}
+

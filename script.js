@@ -698,6 +698,8 @@ document.addEventListener('keydown', (e) => {
             handleHashChange(); // Check for hash on page load
 });
 
+
+
 // Initialize on load (MODIFIED)
 document.addEventListener('DOMContentLoaded', () => {
     initPortfolio();

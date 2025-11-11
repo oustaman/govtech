@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- Desktop Notice -->
@@ -1350,7 +1351,7 @@
                 
                 <!-- Microcopy -->
                 <div class="callout mb-8">
-                    From "Here are rules" → to "Here's what applies to you."
+                    From <i>"Here are rules"</i> → to <i>"Here's what applies to you."</i>
                 </div>
             </div>
 
@@ -1415,11 +1416,11 @@
                                     <span class="text-[var(--n-600)] mr-2">You are in:</span>
                                     <ol class="flex items-center list-none">
                                         <li class="text-[var(--n-900)] font-medium">Greek Missions</li>
-                                        <li aria-hidden="true" class="text-[var(--n-600)]">/</li>
+                                        <li aria-hidden="true" class="text-[var(--n-600)]"> &nbsp;/&nbsp; </li>
                                         <li class="text-[var(--n-900)] font-medium">Hong Kong</li>
-                                        <li aria-hidden="true" class="text-[var(--n-600)]">/</li>
+                                        <li aria-hidden="true" class="text-[var(--n-600)]"> &nbsp;/&nbsp; </li>
                                         <li class="text-[var(--n-900)] font-medium">Consulate General</li>
-                                        <li aria-hidden="true" class="text-[var(--n-600)]">/</li>
+                                        <li aria-hidden="true" class="text-[var(--n-600)]"> &nbsp;/&nbsp; </li>
                                         <li aria-current="page" class="text-[var(--n-600)]">Visa Requirements</li>
                                     </ol>
                                 </div>
@@ -1755,7 +1756,7 @@
                         • Replaces search fatigue with progressive disclosure
                     </p>
                     <p class="text-2xl font-light">
-                        • Designed to scale to 200+ locations and 300+ missions
+                        • Designed to scale to 200+ locations and 1000+ missions
                     </p>
                 </div>
                 
@@ -1956,7 +1957,7 @@
                                 
                                 <!-- Nearby Missions Section -->
                                 <div class="col-span-full mt-8 mb-4">
-                                    <h3 class="text-xl font-bold text-[var(--n-700)]">Nearby Greek Missions</h3>
+                                    <h3 class="mb-8"><h2 class="text-3xl font-bold mb-2" style="font-family:'Source Serif 4', serif;">Nearby Greek Missions</h3>
                                     <p class="text-sm text-[var(--n-500)]">Greek embassies and consulates in neighboring countries</p>
                                 </div>
                                 
@@ -2473,7 +2474,7 @@
                 <div class="card" style="background-color: transparent; outline: 1px solid var(--bg-tertiary); outline-offset: -1px; border-radius: 0.5rem;">                   
                   <div class="card-content">
                         <blockquote class="italic text-base" style="color: var(--text-secondary);">
-                            "This tool saved me hours. What used to take a full day now takes 30 minutes. The automation is brilliant and output looks professional every time."
+                            This tool saved me hours. What used to take a full day now takes 30 minutes.<br>The automation is brilliant and output looks professional every time.
                         </blockquote>
                         <p class="text-sm mt-2" style="color: var(--text-tertiary);">— Academic Colleague, Manchester Metropolitan University</p>
                     </div>
@@ -2666,21 +2667,22 @@
                                       <label class="module-label">Insert Your Module Name:</label>
                                       <input type="text" placeholder="Enter module name">
                                   </div>
-                                  <table>
-                                      <tr>
-                                          <td style="vertical-align: top; padding: 10px; border: 1px solid #ddd;">
-                                              <h3>How to name?</h3>
-                                              <p><strong>Use the full name</strong>, avoid abbreviations.</p>
-                                              <p>• Optionally, you can include the [unit code] or [year].</p>
-                                          </td>
-                                          <td style="vertical-align: top; padding: 10px; border: 1px solid #ddd;">
-                                              <p><strong>Examples:</strong></p>
-                                              <p><em>Advanced Cat Nap Strategies</em></p>
-                                              <p><em>The Sociology of Sandwiches, 2025-FOOD210</em></p>
-                                              <p><em>The Great Emu War: A Tactical Analysis (WARFR0355)</em></p>
-                                          </td>
-                                      </tr>
-                                  </table>
+                                        <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                                        <tr>
+                                            <td style="vertical-align: top; padding: 10px; border: 1px solid #ddd; width: 50%;">
+                                            <h3>How to name?</h3>
+                                            <p><strong>Use the full name</strong>, avoid abbreviations.</p>
+                                            <p>• Optionally, you can include the [unit code] or [year].</p>
+                                            </td>
+                                            <td style="vertical-align: top; padding: 10px; border: 1px solid #ddd; width: 50%;">
+                                            <p><strong>Examples:</strong></p>
+                                            <p><em>Advanced Cat Nap Strategies</em></p>
+                                            <p><em>The Sociology of Sandwiches, 2025-FOOD210</em></p>
+                                            <p><em>The Great Emu War: A Tactical Analysis (WARFR0355)</em></p>
+                                            </td>
+                                        </tr>
+                                        </table>
+                                  <br>
                               </div>
                           </fieldset>
                       </form>
@@ -2727,7 +2729,7 @@
                       <form>
                           <fieldset>
                               <legend><span class="step-number">4</span>Set your rubric criteria</legend><br>
-                              <div style="margin-inline: 2rem;">
+                              <div id="rubrictable" style="margin-inline: 2rem;">
                                   <p><strong>Step by step</strong></p>
                                   <table>
                                       <tr>
@@ -2755,6 +2757,8 @@
                                           <td>Using fewer than 4 descriptors? Disable the extras in Step 2.</td>
                                       </tr>
                                   </table>
+<br>
+
                                   <p><strong>Levels Explained</strong></p>
                                   <table>
                                       <thead>
@@ -2793,7 +2797,7 @@
                                       </tbody>
                                   </table>
                              
-                         
+                         <br>
                       
                                 <p><strong>Modify your rubric</strong></p>
                               <table id="rubrictable">
@@ -2831,20 +2835,61 @@
                           
                       
 
-                          <div class="full-width-bar">
-                          <div class="row-buttons-left">
-                              <span class="action-label"><i class="fas fa-plus-circle"></i> Add rows:</span>
-                              <button class="btn btn-add-rows">5</button>
-                              <button class="btn btn-add-rows">10</button>
-                              <button class="btn btn-add-rows">25</button>
-                          </div>
-                          <div class="row-buttons-right">
-                              <span class="generate-label"><i class="fas fa-file-export"></i> Generate:</span>
-                              <button class="btn btn-generate"><i class="fas fa-file-pdf"></i> Feedback PDFs</button>
-                              <button class="btn btn-download"><i class="fas fa-download"></i> Force Download</button>
-                              <button class="btn btn-download"><i class="fas fa-clipboard-list"></i> Moderator Summary</button>
-                          </div>
-                      </div>
+                        <div style="
+                        display:flex; justify-content:space-between; align-items:center;
+                        gap:16px; width:100%; box-sizing:border-box;
+                        padding:12px 16px; background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+                        ">
+                        <!-- Left group -->
+                        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                            <span style="font-weight:600; color:#111; display:inline-flex; align-items:center; gap:8px;">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i> Add rows:
+                            </span>
+
+                            <button type="button" style="
+                            display:inline-flex !important; align-items:center; justify-content:center;
+                            padding:6px 12px; border:1px solid #d1d5db; background:#f9fafb; color:#111;
+                            border-radius:9999px; font-size:14px; line-height:1; cursor:pointer;
+                            ">5</button>
+
+                            <button type="button" style="
+                            display:inline-flex !important; align-items:center; justify-content:center;
+                            padding:6px 12px; border:1px solid #d1d5db; background:#f9fafb; color:#111;
+                            border-radius:9999px; font-size:14px; line-height:1; cursor:pointer;
+                            ">10</button>
+
+                            <button type="button" style="
+                            display:inline-flex !important; align-items:center; justify-content:center;
+                            padding:6px 12px; border:1px solid #d1d5db; background:#f9fafb; color:#111;
+                            border-radius:9999px; font-size:14px; line-height:1; cursor:pointer;
+                            ">25</button>
+                        </div>
+
+                        <!-- Right group -->
+                        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                            <span style="font-weight:600; color:#111; display:inline-flex; align-items:center; gap:8px;">
+                            <i class="fas fa-file-export" aria-hidden="true"></i> Generate:
+                            </span>
+
+                            <button type="button" style="
+                            display:inline-flex !important; align-items:center; gap:8px;
+                            padding:8px 12px; border:1px solid #d1d5db; background:#fff; color:#111;
+                            border-radius:9999px; font-size:14px; line-height:1; cursor:pointer;
+                            "><i class="fas fa-file-pdf" aria-hidden="true"></i> Feedback PDFs</button>
+
+                            <button type="button" style="
+                            display:inline-flex !important; align-items:center; gap:8px;
+                            padding:8px 12px; border:1px solid #d1d5db; background:#fff; color:#111;
+                            border-radius:9999px; font-size:14px; line-height:1; cursor:pointer;
+                            "><i class="fas fa-download" aria-hidden="true"></i> Force Download</button>
+
+                            <button type="button" style="
+                            display:inline-flex !important; align-items:center; gap:8px;
+                            padding:8px 12px; border:1px solid #d1d5db; background:#fff; color:#111;
+                            border-radius:9999px; font-size:14px; line-height:1; cursor:pointer;
+                            "><i class="fas fa-clipboard-list" aria-hidden="true"></i> Moderator Summary</button>
+                        </div>
+                        </div>
                       
                       <table id="feedbackTable">
                           <thead>
@@ -2930,6 +2975,7 @@
                               </tr>
                           </tbody>
                       </table>
+                      <br>
                       </div>
                       </fieldset>
                       
@@ -2998,7 +3044,7 @@
                         A structured learning system — not a website.
                       </p>
                       <p class="text-2xl font-light">
-                        <strong>Outcome:</strong> Students progress independently. Zero “Where is the file?” questions.
+                        <strong>Outcome:</strong> Students progress independently. Zero <i>“Where is the file?”</i> questions.
                       </p>
                       <p class="text-2xl font-light">
                         <strong>How:</strong> One screen. No menus. No searching. No cognitive load.
@@ -3401,68 +3447,98 @@ One shared language for product, policy, and delivery.
         </div>
 
         <!-- Knowledge Slide 2: Dictionary Preview -->
-        <div class="slide" data-section="3" data-slide="1">
-            <div class="slide-content py-16">
-                <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
-                    4.2
-                </div>
-                <h2 class="text-5xl font-extralight mb-8 tracking-tight">Dictionary Entries</h2>
-                <div style="text-align:center;">
-  <img
-    src="images/spread.jpg"
-    alt="UX Dictionary inner spread (draft)"
-    style="
-      display:block;
-      width:960px;            /* fixed size on normal/large screens */
-      max-width:100%;         /* auto-shrink on small screens */
-      height:auto;            /* keep aspect ratio */
-      border-radius:12px;     
-      box-shadow:
-        0 0 0 1px #e5e7eb inset,  /* crisp 1px outline that respects radius */
-        0 10px 24px rgba(0,0,0,.06);
-    "
-  >
+<div class="slide" data-section="3" data-slide="1">
+  <div class="slide-content py-16">
+    <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">4.2</div>
+    <h2 class="text-5xl font-extralight mb-8 tracking-tight">Dictionary Entries</h2>
+
+    <div style="text-align:center;">
+      <!-- Zoom container (scoped id) -->
+      <div id="dictZoom" class="zoom-pane">
+        <img src="images/spread.jpg" alt="UX Dictionary inner spread (draft)">
+      </div>
+    </div>
+
+    <br>
+    <p style="text-align:center;color:#6b7280;font-style:italic;margin:.5rem 0 0;">
+      • Curated terminology asset — structured, versioned, and currently in editorial review.
+      <br>• Pre-publication reference spread — terminology governance and accessibility checks in progress.
+    </p>
+  </div>
 </div>
-<br>
-<p style="text-align:center;color:#6b7280;font-style:italic;margin:.5rem 0 0;">
-                            	• Curated terminology asset — structured, versioned, and currently in editorial review.
-                          <br>• Pre-publication reference spread — terminology governance and accessibility checks in progress.
-</p>
+
+<!-- Minimal CSS (inline-safe) -->
+<style>
+  #dictZoom.zoom-pane{
+    width:960px; max-width:100%; margin:0 auto;
+    overflow:hidden; position:relative; border-radius:12px;
+    box-shadow:0 0 0 1px #e5e7eb inset, 0 10px 24px rgba(0,0,0,.06);
+    cursor: zoom-in;
+  }
+  #dictZoom.zoom-pane img{
+    display:block; width:100%; height:auto;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform .2s ease, transform-origin .05s linear;
+    will-change: transform, transform-origin;
+  }
+  #dictZoom.zoom-pane.zoomed{ cursor: zoom-out; }
+</style>
+
+<!-- Tiny, scoped JS -->
+<script>
+(function(){
+  const pane = document.getElementById('dictZoom');
+  if(!pane) return;
+  const img = pane.querySelector('img');
+  const SCALE = 2; // 200%
+
+  pane.addEventListener('mouseenter', () => {
+    img.style.transform = `scale(${SCALE})`;
+    pane.classList.add('zoomed');
+  }, { passive: true });
+
+  pane.addEventListener('mousemove', (e) => {
+    const r = pane.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top)  / r.height) * 100;
+    img.style.transformOrigin = `${x}% ${y}%`;
+  }, { passive: true });
+
+  pane.addEventListener('mouseleave', () => {
+    img.style.transform = 'scale(1)';
+    pane.classList.remove('zoomed');
+  }, { passive: true });
+})();
+</script>
 
 
-	
-	
 
-              </div>
-
-
-              
-              </div>
                     <!-- Knowledge Slide 3: Clarity Scoring -->
         <div class="slide" data-section="3" data-slide="2">
             <div class="slide-content py-16">
                 <div class="text-xs uppercase tracking-widest mb-4" style="color: var(--text-tertiary);">
                     4.3
                 </div>
-                <h2 class="text-5xl font-extralight mb-8 tracking-tight">UX Dictionary Quality Control</h2>
+                <h2 class="text-5xl font-extralight mb-8 tracking-tight">Dictionary Quality Control</h2>
                 <div class="space-y-8" style="color: var(--text-secondary); line-height: 1.85;">
                     <p class="text-2xl font-light">
-                        <strong>Problem:</strong> Language drifts. Quality drops. Teams lose precision.
+                        <strong>Problem:</strong> Ambiguity creeps in. Alignment erodes. Work slows.
                     </p>
                     <p class="text-2xl font-light">
                         <strong>Solution:</strong> I built a clarity scoring system that enforces objective quality.
                     </p>
                     <p class="text-2xl font-light">
-                        <strong>Impact:</strong> Consistent, high quality definitions.
+                        <strong>Impact:</strong> Shared language → shared decisions → faster execution.
                     </p>
                 </div>
                 
                 <!-- Scoring Methodology Table -->
                 <div class="scoring-methodology mt-8">
-                    <h3 style="font-size: 1.5rem; font-weight: 400; margin-bottom: 1.5rem;">Scoring Methodology → How it works out</h3>
-                    <table class="methodology-table">
+                    <h3 style="font-size: 1.5rem; font-weight: 400; margin-bottom: 1.5rem;">Scoring Methodology → How it scores definitions</h3>
+                    <table class="methodology-table text-2xl font-light">
                         <thead>
-                            <tr>
+                            <tr >
                                 <th>Parameter</th>
                                 <th>Weight</th>
                                 <th>What It Measures</th>
@@ -3470,14 +3546,14 @@ One shared language for product, policy, and delivery.
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Readability</td>
-                                <td class="weight-cell">15%</td>
-                                <td>Flesch-Kincaid grade level, syllable count, sentence complexity</td>
-                            </tr>
-                            <tr>
                                 <td>Clarity</td>
                                 <td class="weight-cell">25%</td>
                                 <td>Sentence length, word length, avoids overly long constructions</td>
+                            </tr>
+                            <tr>
+                                <td>Readability</td>
+                                <td class="weight-cell">15%</td>
+                                <td>Flesch-Kincaid grade level, syllable count, sentence complexity</td>
                             </tr>
                             <tr>
                                 <td>Jargon Balance</td>
@@ -3512,16 +3588,14 @@ One shared language for product, policy, and delivery.
                     4.4
                 </div>
                 <h2 class="text-5xl font-extralight mb-8 tracking-tight">Definition Quality Scorer</h2>
-                
                 <!-- Definition Quality Scorer -->
                 <div class="definition-scorer">
-                    <h3 style="font-size: 1.5rem; font-weight: 300; margin-bottom: 0.5rem;">Try editing the definitions below</h3>
-                    <p class="subtitle">See how quality scores change in real-time</p>
-                    
+                    <h3 style="font-size: 1.5rem; font-weight: 300; margin-bottom: 0.5rem;">Change the text → see how clarity changes</h3>
+                    <br>
                     <div class="boxes-row">
                         <!-- Definition Box 1 - Poor Example -->
                         <div class="definition-box">
-                            <div class="box-label">Example 1: Low Score Definition</div>
+                            <div class="box-label">Low clarity</div>
                             <textarea id="definition1" placeholder="Enter a definition...">A/B Testing is a methodology that is used for purpose of comparing two different versions of something in order to determine which one performs better based on specific metrics and user engagement data.</textarea>
                             <div class="progress-bar-container">
                                 <div class="progress-bar low" id="progress1" style="width: 0%;"></div>
@@ -3534,7 +3608,7 @@ One shared language for product, policy, and delivery.
                         
                         <!-- Definition Box 2 - Good Example -->
                         <div class="definition-box">
-                            <div class="box-label">Example 2: High Score Definition</div>
+                            <div class="box-label">High clarity</div>
                             <textarea id="definition2" placeholder="Enter a definition...">Method to compare two versions of a page or app to see which performs better.</textarea>
                             <div class="progress-bar-container">
                                 <div class="progress-bar good" id="progress2" style="width: 0%;"></div>
